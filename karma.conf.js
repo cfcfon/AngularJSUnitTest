@@ -19,7 +19,8 @@ module.exports = function(config) {
       'node_modules/angular/angular.min.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'src/**/*.js',
-      'spec/**/*.js'
+      'spec/**/*.js',
+      'src/**/*.html'
     ],
 
 
@@ -28,16 +29,20 @@ module.exports = function(config) {
     ],
 
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        'src/**/*.html': ['ng-html2js']
+    },
+    
+    ngHtml2JsPreprocessor: {
+        cacheIdFromPath: function (filePath) {
+            console.log("filePath " + filePath);
+            var cacheId = filePath.replace("src/", "");
+            console.log("cacheId " + cacheId);
+            return cacheId;
+        },
+        moduleName: 'ngTemplates'
     },
 
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
 
 
     // web server port
