@@ -1,0 +1,14 @@
+var app = angular.module('weatherApp', []);
+app.factory('weatherService', function () {
+    var service = {};
+    service.getWeathers = function () {
+        var cities = [
+            {'name': 'Bangkok', 'temp': 32},
+            {'name': 'San Francisco', 'temp': 13},
+            {'name': 'Los Angeles', 'temp': 14},
+            {'name': 'Taipei', 'temp': 21}
+        ];
+        return cities;
+    };
+    return service;
+});
